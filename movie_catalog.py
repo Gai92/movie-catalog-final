@@ -32,13 +32,6 @@ class MovieCatalog:
         movie = {"title": title, "genre": genre}
         self.movies.append(movie)
         return movie
-
-
-    # Return all movies
-    def get_all_movies(self):
-        if not self.movies:
-            print("The catalog is currently empty.")
-        return self.movies
     
     # Filter by genre
     def get_movies_by_genre(self, genre):
