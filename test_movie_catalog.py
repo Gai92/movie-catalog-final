@@ -27,12 +27,15 @@ class TestMovieCatalog(unittest.TestCase):
 
     #invalid genre
     def test_add_movie_with_invalid_genre(self):
-        self.catalog.add_movie("Lord of the Rings", "fantasy")  # 'fantasy' is not a valid genre
+        with self.assertRaises(ValueError) as context:
+            self.catalog.add_movie("Lord of the Rings", "fantasy")  # 'fantasy' is not a valid genre
+        self.assertIn("Invalid genre", str(context.exception))
 
     #duplicate movie
     def test_add_duplicate_movie_should_fail(self):
-        # Adding the same movie again
-        self.catalog.add_movie("Matrix", "sci-fi")  # Should raise ValueError
+        with self.assertRaises(ValueError) as context:
+            self.catalog.add_movie("Matrix", "sci-fi")  # Already added in setUp
+        self.assertIn("already in the catalog", str(context.exception))
 
 if __name__ == "__main__":
     unittest.main()
