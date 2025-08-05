@@ -5,6 +5,13 @@ pip3 install -r requirements.txt
 
 echo "Running tests"
 #Run tests
-python3 -m pytest unit_test_movie_catalog.py
+python3 -m pytest
+RESULT=$?
 
-echo "Tests passed"
+if [ $RESULT -ne 0 ]; then
+  echo "Build failed: Some tests did not pass."
+  exit 1
+else
+  echo "Build successful: All tests passed."
+  exit 0
+fi
