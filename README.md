@@ -32,6 +32,7 @@ Make sure you have Python 3 and pip installed.
 
 ```bash
 pip install -r requirements.txt
+```
 
 2.  Make the build script executable (if needed):
 
