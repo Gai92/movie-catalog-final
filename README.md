@@ -6,6 +6,14 @@ This is a simple movie catalog application developed in Python.
 1. Add movie to catalog
 2. Get all movies in catalog
 3. Get movies by genre
+4. Unit testing with both passing and failing test cases (to simulate CI/CD build failure)
+
+### Project Structure:
+
+- `movie_catalog.py` — main application logic
+- `test_movie_catalog.py` — unit tests (PyTest)
+- `build.sh` — build script
+- `requirements.txt` — dependency list
 
 ### Unit Testing
 Project has 5 unit-tests, three of them are passed, two are failed.
@@ -18,17 +26,43 @@ pip install -r requirements.txt
 
 ### How to run the build
 
-To build the application and run the tests automatically, use the `build.sh` script:
+Make sure you have Python 3 and pip installed.
+
+1. Install dependencies:
 
 ```bash
-./build.sh
-```
-If you get a "permission denied" error when running build.sh, use this command to grant execute permissions:
+pip install -r requirements.txt
+
+2.  Make the build script executable (if needed):
+
 ```bash
 chmod +x build.sh
 ```
 
-This script installs dependencies and executes all unit tests.
+3. Run the build script:
 
-### Build Automation Result
-![img.png](build_automation.png)
+```bash
+./build.sh
+```
+
+The script will install dependencies and run all unit tests using pytest.
+If tests fail, the build will exit with status 1.
+
+### GitHub Webhook:
+
+The GitHub webhook is configured to trigger Jenkins upon push:
+```arduino
+https://<your-ngrok-address>.ngrok-free.app/github-webhook/
+```
+
+Please ensure your local Jenkins server is accessible via NGROK.
+
+### Jenkins Job (Freestyle)
+
+The project is integrated with Jenkins via a Freestyle job, which executes the build.sh script and monitors the test results.
+
+   If all tests pass — build succeeds
+
+   If any test fails — build fails
+
+
