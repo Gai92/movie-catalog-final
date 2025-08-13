@@ -9,7 +9,7 @@ This is a simple movie catalog application developed in Python.
 
 ### Unit Testing
 Project has 5 unit-tests, three of them are passed, two are failed.
-As a result the build will not be successful due to the failed tests.
+As a result the build will not be successful, due to the failed tests.
 
 Dependencies listed in `requirements.txt`. To install them, run:
 ```bash
